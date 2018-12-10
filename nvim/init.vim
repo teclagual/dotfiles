@@ -1,8 +1,6 @@
-" ============================================================================================================
-" ================================================== Options =================================================
-" ============================================================================================================
+" Options
 syntax on
-
+set ignorecase
 set smartcase                 " Las búsquedas ignoran case a menos que haya una mayúscula en la búsqueda
 set updatetime=100
 set background=dark
@@ -10,19 +8,15 @@ set expandtab                 " para que inserte espacios cuando le piques TAB
 set shiftwidth=3              " cantidad de espacios cuando presionas TAB
 set softtabstop=3             " cantidad de espacios cuando presionas TAB
 set number                    " agrega números a las líneas
-" set cursorline                " Indicador de en qué línea estás
-" set cursorcolumn              " Indicador de en qué columna estás
 set mouse=a                   " Para poder usar el mouse scroll y click
 set wildmenu                  " Para que el autocomplete en command-line mode muestre las opciones
 set autoread                  " si se cambia un archivo mientras está abierto en nvim, lo vuelve a leer
-" set confirm                   " si tratas de cambiar de buffer y no lo has guardado, te pregunta qué quieres hacer con los cambios
 set listchars=tab:→\ ,eol:↲,trail:-
 set laststatus=2
 
 let g:python_host_prog  = '/user/local/bin/python'
-" ============================================================================================================
-" ================================================== Vundle ==================================================
-" ============================================================================================================
+
+" Vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -44,13 +38,18 @@ Plugin 'Lokaltog/vim-monotone'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
-" <- End ->
-" ============================================================================================================
-" =========================================== Bindings =======================================================
-" ============================================================================================================
+
+" Bindings
 let mapleader = "\<Space>"
 
-nnoremap <Leader>ls :ls<CR>:b<Space>
+" Show open buffers
+nnoremap <leader>ls :ls<CR>:b<Space>
+
+" jump to render()
+nnoremap <leader>re /render()<CR>:noh<CR>
+
+" jump to state =
+nnoremap <leader>st /state =<CR>:noh<CR>
 
 " Up y Down arrows mueven lines
 inoremap <Up> <Esc>ddkPi
@@ -63,10 +62,6 @@ nnoremap <C-j> <C-W><C-j>
 nnoremap <C-h> <C-W><C-h>
 nnoremap <C-k> <C-W><C-k>
 nnoremap <C-l> <C-W><C-l>
-
-" Para saltar al placeholder %%% presionando ::
-" imap <buffer> :: <Esc>/%%%<CR>c3l
-" nmap <buffer> :: /%%%<CR>c3l
 
 " NERDTreeToggle
 nnoremap <Leader>tr :NERDTreeToggle<CR>
@@ -91,28 +86,19 @@ inoremap <Right> <Nop>
 
 command -nargs=? ReactClassComponent :execute "normal :read ~/.config/nvim/templates/ReactClassComponent.js<cr>kdd"
 command -nargs=? ReactPureComponent :execute "normal :read ~/.config/nvim/templates/ReactPureComponent.js<cr>kdd"
-" ============================================================================================================
-" =========================================== vim-closetag ===================================================
-" ============================================================================================================
+
+" vim-closetag
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.jsx"
 
-" ============================================================================================================
-" ============================================= NERDTree =====================================================
-" ============================================================================================================
+" NERDTree
 let g:NERDTreeIgnore=['node_modules$[[dir]]']
 
-" ============================================================================================================
-" =========================================== Ale Linter =====================================================
-" ============================================================================================================
+" Ale Linter
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
-" let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
-" let g:ale_javascript_eslint_use_global = 1
-" ============================================================================================================
-" =============================================== CTRL-P =====================================================
-" ============================================================================================================
-" let g:ctrlp_custom_ignore = 'ios\|android\|node_modules\|DS_Store\|git'
-" ============================================================================================================
-" =============================================== Colors =====================================================
-" ============================================================================================================
-" colorscheme monotone
+
+" Colors
+colorscheme monotone
+
+" vim-polyglot
+let g:javascript_plugin_flow = 1

@@ -128,5 +128,8 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
   bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
 
-# node 10 por gprc
-export PATH="/usr/local/opt/node@10/bin:$PATH"
+# Kitty
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin

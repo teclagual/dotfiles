@@ -1,0 +1,26 @@
+foreground   #dddddd
+background   #0b0908
+
+color0       #0b0908
+color8       #98ba42
+
+color1       #ef9c33
+color9       #FF4B4B
+
+color2       #eb77ae
+color10      #894666
+
+color3       #c4a7e8
+color11      #c4a7e8
+
+color4       #eb77ae
+color12       #7333c3
+
+color5       #E7E1DF
+color13      #73d0f1
+
+color6       #FF69B4
+color14      #f89dc5
+
+color7       #e7e1df
+color15      #e7e1df
