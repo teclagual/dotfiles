@@ -13,6 +13,7 @@ set wildmenu                  " Para que el autocomplete en command-line mode mu
 set autoread                  " si se cambia un archivo mientras está abierto en nvim, lo vuelve a leer
 set listchars=tab:→\ ,eol:↲,trail:-
 set laststatus=2
+set hidden                    " para poder cambiar de buffer sin que me pida guardar
 
 let g:python_host_prog  = '/user/local/bin/python'
 
@@ -35,6 +36,9 @@ Plugin 'tpope/vim-commentary'     " https://github.com/tpope/vim-commentary gcc:
 Plugin 'w0rp/ale'                 " https://github.com/w0rp/ale
 Plugin 'airblade/vim-gitgutter'   " https://github.com/airblade/vim-gitgutter
 Plugin 'Lokaltog/vim-monotone'
+Plugin 'patstockwell/vim-monokai-tasty'
+Plugin 'ap/vim-buftabline'
+Plugin 'neoclide/coc.nvim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -42,11 +46,28 @@ filetype plugin indent on    " required
 " Bindings
 let mapleader = "\<Space>"
 
-" Show open buffers
-nnoremap <leader>ls :ls<CR>:b<Space>
+" Tab navigation
+nnoremap <Leader>t1 1gt
+nnoremap <Leader>t2 2gt
+nnoremap <Leader>t3 3gt
+nnoremap <Leader>t4 4gt
+nnoremap <Leader>t5 5gt
+nnoremap <Leader>t6 6gt
+nnoremap <Leader>tn :tabnew<Space>
+
+" Buffers
+nnoremap <Leader><Tab> :bn<CR>
+nnoremap <Leader>1 :br<CR>
+nnoremap <Leader>2 :br<CR>:bn<CR>
+nnoremap <Leader>3 :br<CR>:2bn<CR>
+nnoremap <Leader>4 :br<CR>:3bn<CR>
+nnoremap <Leader>5 :br<CR>:4bn<CR>
+nnoremap <Leader>6 :br<CR>:5bn<CR>
+nnoremap <Leader>q :bd<CR>
+nnoremap <Leader>wq :w<CR>:bd<CR>
 
 " jump to render()
-nnoremap <leader>re /render()<CR>:noh<CR>
+nnoremap <leader>re /render()<CR>:noh<CR>z.
 
 " jump to state =
 nnoremap <leader>st /state =<CR>:noh<CR>
@@ -77,8 +98,14 @@ nnoremap <leader>so :source ~/.config/nvim/init.vim<cr>
 nnoremap <leader>nh :noh<CR>
 
 " window resizing
-nnoremap <leader>ws :vertical resize -20<CR>
-nnoremap <leader>wb :vertical resize +20<CR>
+" ws: shorter
+nnoremap <leader>ws :resize -10<CR>
+" wt: taller
+nnoremap <leader>wt :resize +10<CR>
+" ww: wider
+nnoremap <leader>ww :vertical resize +20<CR>
+" wn: narrower
+nnoremap <leader>wn :vertical resize -20<CR>
 
 " Disable left and right arrows
 inoremap <Left> <Nop>
@@ -97,8 +124,15 @@ let g:NERDTreeIgnore=['node_modules$[[dir]]']
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 
-" Colors
-colorscheme monotone
-
 " vim-polyglot
 let g:javascript_plugin_flow = 1
+
+" coc.nvim
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Colors
+" colorscheme vim-monokai-tasty
+colorscheme monotone
+
+source $HOME/.config/nvim/searchblink.vim
